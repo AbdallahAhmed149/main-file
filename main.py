@@ -210,3 +210,17 @@ df3.dropna(inplace=True)
 print(df3.isna().sum())
 print(df3.isna().any())
 print(df3.isna().all())
+
+# print(df3.isna().sum())
+# print(df3.isna().any())
+# print(df3.isna().all())
+
+# print(df3.value_counts("gender"))
+# print(df3["gender"].value_counts())study_hours_per_day
+# print(df3["gender"].count())
+
+# df3["gender"].hist()
+# sns.countplot(data=df3, x="gender")
+# sns.histplot(data=df3, x="gender")
+# sns.boxplot(data=df3, x="gender", y="social_media_hours")
+# plt.show()

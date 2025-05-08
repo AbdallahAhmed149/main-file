@@ -220,3 +220,5 @@ df3.dropna(inplace=True)
 # sns.histplot(data=df3, x="gender")
 # sns.boxplot(data=df3, x="gender", y="social_media_hours")
 # plt.show()
+
+

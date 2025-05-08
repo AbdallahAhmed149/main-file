@@ -207,10 +207,6 @@ df3.dropna(inplace=True)
 # plt.legend(["Male", "Female"])
 # plt.show() 
 
-print(df3.isna().sum())
-print(df3.isna().any())
-print(df3.isna().all())
-
 # print(df3.isna().sum())
 # print(df3.isna().any())
 # print(df3.isna().all())

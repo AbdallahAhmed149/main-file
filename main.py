@@ -5,7 +5,7 @@ import seaborn as sns
 
 # df = pd.read_csv("trial.csv", index_col=-1)
 # df = pd.read_csv("trial.csv", index_col="name")
-# df = pd.read_csv("trial.csv")
+df = pd.read_csv("trial.csv")
 # df1 = pd.DataFrame(data=df, columns=["mpg"])
 # print(df1.head())
 
@@ -223,7 +223,4 @@ import seaborn as sns
 
 # ------------------------------------------------------------------------------
 
-import pandas as pd
-
-df = pd.read_csv("trial.csv")
-print(df.head())
+r

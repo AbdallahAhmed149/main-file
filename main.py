@@ -178,12 +178,12 @@ import seaborn as sns
 
 # ------------------------------------------------------------------------------
 
-df3 = pd.read_csv("student_habits_performance.csv")
+# df3 = pd.read_csv("student_habits_performance.csv")
 # df3 = pd.read_csv("student_habits_performance.csv", index_col="student_id")
 
-df3.set_index(["student_id", "diet_quality"], inplace=True)
+# df3.set_index(["student_id", "diet_quality"], inplace=True)
 
-df3.dropna(inplace=True)
+# df3.dropna(inplace=True)
 
 # df3.reset_index(inplace=True, drop=True)
 # df3.reset_index(inplace=True)
@@ -221,4 +221,8 @@ df3.dropna(inplace=True)
 # sns.boxplot(data=df3, x="gender", y="social_media_hours")
 # plt.show()
 
+# ------------------------------------------------------------------------------
 
+import pandas as pd
+
+df = pd.read_csv("trial.csv")

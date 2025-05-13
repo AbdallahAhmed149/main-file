@@ -7,6 +7,13 @@ import seaborn as sns
 # df = pd.read_csv("trial.csv", index_col="name")
 # df = pd.read_csv("trial.csv")
 # df1 = pd.DataFrame(data=df, columns=["mpg"])
+# df2 = pd.read_csv("divorce.csv")
+df3 = pd.read_csv("data3.csv")
+df4 = pd.read_csv("data4.csv")
+df5 = pd.read_csv("data5.csv")
+
+# print(df4.shape)
+
 # print(df1.head())
 
 # print(df.index.get_loc("ford torino"))
@@ -144,8 +151,6 @@ import seaborn as sns
 
 # ------------------------------------------------------------------------------
 
-# df3 = pd.read_csv("student_habits_performance.csv")
-
 # print(df3.isna().sum())
 # print(len(list(df3.columns)))
 # print(df3["parental_education_level"].value_counts())
@@ -178,12 +183,12 @@ import seaborn as sns
 
 # ------------------------------------------------------------------------------
 
-df3 = pd.read_csv("student_habits_performance.csv")
+# df3 = pd.read_csv("student_habits_performance.csv")
 # df3 = pd.read_csv("student_habits_performance.csv", index_col="student_id")
 
-df3.set_index(["student_id", "diet_quality"], inplace=True)
+# df3.set_index(["student_id", "diet_quality"], inplace=True)
 
-df3.dropna(inplace=True)
+# df3.dropna(inplace=True)
 
 # df3.reset_index(inplace=True, drop=True)
 # df3.reset_index(inplace=True)
@@ -205,7 +210,7 @@ df3.dropna(inplace=True)
 # df3[df3["gender"] == "Male"]["sleep_hours"].hist()
 # df3[df3["gender"] == "Female"]["sleep_hours"].hist()
 # plt.legend(["Male", "Female"])
-# plt.show() 
+# plt.show()
 
 # print(df3.isna().sum())
 # print(df3.isna().any())
@@ -221,7 +226,4 @@ df3.dropna(inplace=True)
 # sns.boxplot(data=df3, x="gender", y="social_media_hours")
 # plt.show()
 
-print("hello world")
-print("hello world")
-print("hello world")
-print("hello world")
+

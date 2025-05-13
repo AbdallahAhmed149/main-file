@@ -5,8 +5,15 @@ import seaborn as sns
 
 # df = pd.read_csv("trial.csv", index_col=-1)
 # df = pd.read_csv("trial.csv", index_col="name")
-df = pd.read_csv("trial.csv")
+# df = pd.read_csv("trial.csv")
 # df1 = pd.DataFrame(data=df, columns=["mpg"])
+# df2 = pd.read_csv("divorce.csv")
+df3 = pd.read_csv("data3.csv")
+df4 = pd.read_csv("data4.csv")
+df5 = pd.read_csv("data5.csv")
+
+# print(df4.shape)
+
 # print(df1.head())
 
 # print(df.index.get_loc("ford torino"))
@@ -144,8 +151,6 @@ df = pd.read_csv("trial.csv")
 
 # ------------------------------------------------------------------------------
 
-# df3 = pd.read_csv("student_habits_performance.csv")
-
 # print(df3.isna().sum())
 # print(len(list(df3.columns)))
 # print(df3["parental_education_level"].value_counts())
@@ -205,7 +210,7 @@ df = pd.read_csv("trial.csv")
 # df3[df3["gender"] == "Male"]["sleep_hours"].hist()
 # df3[df3["gender"] == "Female"]["sleep_hours"].hist()
 # plt.legend(["Male", "Female"])
-# plt.show() 
+# plt.show()
 
 # print(df3.isna().sum())
 # print(df3.isna().any())
@@ -223,4 +228,38 @@ df = pd.read_csv("trial.csv")
 
 # ------------------------------------------------------------------------------
 
-r
+# print(df3.pivot_table("age", "student_id"))
+# print(sum([df3["age"], df3["social_media_hours"]]))
+# print(df3.groupby())
+# print(df3[["age", "social_media_hours"]].std(axis=1).head())
+# print(pd.DataFrame())
+
+# ------------------------------------------------------------------------------
+
+
+# print(df3.merge(df4, left_on="age", right_on="Age").shape)
+# print(df3.merge(df4, left_on="age", right_on="Age"))
+
+# print(df3.merge(df4, left_on="age", right_on="Age", how="outer").shape)
+# print(df3.merge(df4, left_on="age", right_on="Age", how="outer"))
+
+# print(df3.merge(df4, left_on="age", right_on="Age", how="left").shape)
+# print(df3.merge(df4, left_on="age", right_on="Age", how="left"))
+
+# print(df3.merge(df4, left_on="age", right_on="Age").shape)
+# print(df3.merge(df4, left_on="age", right_on="Age", how="right"))
+
+# print(df3.merge(df4, left_on="age", right_on="Age").merge(df5, on="Gender").shape)
+# print(df3.merge(df4, left_on="age", right_on="Age").merge(df5, on="Gender"))
+
+# print(df3.merge(df4, left_on="age", right_on="Age").shape)
+# print(df3.merge(df4, left_on=["age", "gender"], right_on=["Age", "Gender"]))
+
+# data = (df3.merge(df4, left_on=["age", "gender"], right_on=["Age", "Gender"]))
+# data.groupby("gender")["social_media_hours"].sum().plot(kind="bar", y="Most_Used_Platform")
+# plt.show()
+
+# print(df3.merge(df3, on="age"))
+# print(df3.merge(df3, on="age", how="left"))
+
+print(df3.merge(df4, left_on="age", right_on="Age", left_index=True, right_index=True))

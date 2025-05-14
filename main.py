@@ -226,4 +226,43 @@ df5 = pd.read_csv("data5.csv")
 # sns.boxplot(data=df3, x="gender", y="social_media_hours")
 # plt.show()
 
+# ------------------------------------------------------------------------------
 
+# print(df3.pivot_table("age", "student_id"))
+# print(sum([df3["age"], df3["social_media_hours"]]))
+# print(df3.groupby())
+# print(df3[["age", "social_media_hours"]].std(axis=1).head())
+# print(pd.DataFrame())
+
+# ------------------------------------------------------------------------------
+
+# print(df3.merge(df4, left_on="age", right_on="Age").shape)
+# print(df3.merge(df4, left_on="age", right_on="Age"))
+
+# print(df3.merge(df4, left_on="age", right_on="Age", how="outer").shape)
+# print(df3.merge(df4, left_on="age", right_on="Age", how="outer"))
+
+# print(df3.merge(df4, left_on="age", right_on="Age", how="left").shape)
+# print(df3.merge(df4, left_on="age", right_on="Age", how="left"))
+
+# print(df3.merge(df4, left_on="age", right_on="Age").shape)
+# print(df3.merge(df4, left_on="age", right_on="Age", how="right"))
+
+# print(df3.merge(df4, left_on="age", right_on="Age").merge(df5, on="Gender").shape)
+# print(df3.merge(df4, left_on="age", right_on="Age").merge(df5, on="Gender"))
+
+# print(df3.merge(df4, left_on="age", right_on="Age").shape)
+# print(df3.merge(df4, left_on=["age", "gender"], right_on=["Age", "Gender"]))
+
+# data = (df3.merge(df4, left_on=["age", "gender"], right_on=["Age", "Gender"]))
+# data.groupby("gender")["social_media_hours"].sum().plot(kind="bar", y="Most_Used_Platform")
+# plt.show()
+
+# print(df3.merge(df3, on="age"))
+# print(df3.merge(df3, on="age", how="left"))
+
+# print(df3.merge(df4, left_on="age", right_on="Age", left_index=True, right_index=True))
+
+# ------------------------------------------------------------------------------
+
+print("how are you")

@@ -266,12 +266,13 @@ df5 = pd.read_csv("data5.csv")
 # ------------------------------------------------------------------------------
 
 # ( Semi-join )
-semi = df3.merge(df4, on="gender")
-top = df3[df3["gender"].isin(semi["gender"])]
-print(top)
+# semi = df3.merge(df4, on="gender")
+# top = df3[df3["gender"].isin(semi["gender"])]
+# print(top)
 
-# ( anti join )
-anti = df3.merge(df4, on="gender", how="left", indicator=True)
-lst = anti.loc[anti["_merge"] == "left_only", "gender"]
-non_top = df3[df3["gender"].isin(lst)]
-print(non_top)
+# # ( anti join )
+# anti = df3.merge(df4, on="gender", how="left", indicator=True)
+# lst = anti.loc[anti["_merge"] == "left_only", "gender"]
+# non_top = df3[df3["gender"].isin(lst)]
+# print(non_top)
+

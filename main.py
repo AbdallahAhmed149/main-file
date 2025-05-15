@@ -275,4 +275,3 @@ anti = df3.merge(df4, on="gender", how="left", indicator=True)
 lst = anti.loc[anti["_merge"] == "left_only", "gender"]
 non_top = df3[df3["gender"].isin(lst)]
 print(non_top)
-

@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import statistics
+from scipy.stats import iqr
 
 # df = pd.read_csv("trial.csv", index_col=-1)
 # df = pd.read_csv("trial.csv", index_col="name")
@@ -183,47 +185,47 @@ import seaborn as sns
 
 # ------------------------------------------------------------------------------
 
-# df3 = pd.read_csv("student_habits_performance.csv")
-# df3 = pd.read_csv("student_habits_performance.csv", index_col="student_id")
+# df4 = pd.read_csv("student_habits_performance.csv")
+# df4 = pd.read_csv("student_habits_performance.csv", index_col="student_id")
 
-# df3.set_index(["student_id", "diet_quality"], inplace=True)
+# df4.set_index(["student_id", "diet_quality"], inplace=True)
 
-# df3.dropna(inplace=True)
+# df4.dropna(inplace=True)
 
-# df3.reset_index(inplace=True, drop=True)
-# df3.reset_index(inplace=True)
+# df4.reset_index(inplace=True, drop=True)
+# df4.reset_index(inplace=True)
 
-# print(df3[df3["age"].isin([18, 29])])
+# print(df4[df4["age"].isin([18, 29])])
 
-# print(df3.loc[["S1022", "S1975"], ["age", "exam_score"]])
-# print(df3.loc[("S1022", "S1975"), ("age", "exam_score")])
-# print(df3.loc[[("S1022", "High School"), ("S1004", "Master")], ("age", "exam_score")])
-# print(df3.loc[("S1004", "Master") : ("S1022", "High School"), ("age", "exam_score")])
+# print(df4.loc[["S1022", "S1975"], ["age", "exam_score"]])
+# print(df4.loc[("S1022", "S1975"), ("age", "exam_score")])
+# print(df4.loc[[("S1022", "High School"), ("S1004", "Master")], ("age", "exam_score")])
+# print(df4.loc[("S1004", "Master") : ("S1022", "High School"), ("age", "exam_score")])
 
-# df3.sort_index(level=["student_id", "parental_education_level"], ascending=[True, False],inplace=True)
-# print(df3.head())
+# df4.sort_index(level=["student_id", "parental_education_level"], ascending=[True, False],inplace=True)
+# print(df4.head())
 
-# df3["gender"].hist()
-# plt.bar(data=df3, height="social_media_hours", x="age")
-# df3.plot(x="age", y="social_media_hours", kind="scatter")
+# df4["gender"].hist()
+# plt.bar(data=df4, height="social_media_hours", x="age")
+# df4.plot(x="age", y="social_media_hours", kind="scatter")
 
-# df3[df3["gender"] == "Male"]["sleep_hours"].hist()
-# df3[df3["gender"] == "Female"]["sleep_hours"].hist()
+# df4[df4["gender"] == "Male"]["sleep_hours"].hist()
+# df4[df4["gender"] == "Female"]["sleep_hours"].hist()
 # plt.legend(["Male", "Female"])
 # plt.show()
 
-# print(df3.isna().sum())
-# print(df3.isna().any())
-# print(df3.isna().all())
+# print(df4.isna().sum())
+# print(df4.isna().any())
+# print(df4.isna().all())
 
-# print(df3.value_counts("gender"))
-# print(df3["gender"].value_counts())study_hours_per_day
-# print(df3["gender"].count())
+# print(df4.value_counts("gender"))
+# print(df4["gender"].value_counts())
+# print(df4["gender"].count())
 
-# df3["gender"].hist()
-# sns.countplot(data=df3, x="gender")
-# sns.histplot(data=df3, x="gender")
-# sns.boxplot(data=df3, x="gender", y="social_media_hours")
+# df4["gender"].hist()
+# sns.countplot(data=df4, x="gender")
+# sns.histplot(data=df4, x="gender")
+# sns.boxplot(data=df4, x="gender", y="social_media_hours")
 # plt.show()
 
 # ------------------------------------------------------------------------------
@@ -236,6 +238,7 @@ import seaborn as sns
 
 # ------------------------------------------------------------------------------
 
+# ( Joining Data by Merge() method )
 # print(df3.merge(df4, left_on="age", right_on="Age").shape)
 # print(df3.merge(df4, left_on="age", right_on="Age"))
 
@@ -261,7 +264,9 @@ import seaborn as sns
 # print(df3.merge(df3, on="age"))
 # print(df3.merge(df3, on="age", how="left"))
 
-# print(df3.merge(df4, left_on="age", right_on="Age", left_index=True, right_index=True))
+# print(df3.merge(df4, left_on="age", right_on="Age"))
+# print(df3.merge(df4, left_index=True, right_index=True))
+# print(df3.merge(df4))
 
 # ------------------------------------------------------------------------------
 
@@ -278,7 +283,50 @@ import seaborn as sns
 
 # ------------------------------------------------------------------------------
 
-df = pd.read_csv("student_habits_performance.csv")
+# ( Joining Data by Concat() method )
+# print(pd.concat([df3, df4, df5], ignore_index=True))
+# print(pd.concat([df3, df4, df5], keys=["Table1", "Table2", "Table3"]))
+# print(pd.concat([df3, df4, df5], keys=["Table1", "Table2", "Table3"], sort=True)) # the sorting is applied on the columns names
+
+# ------------------------------------------------------------------------------
+
+# ( Joining Data by Merge_order() method )
+# print(pd.merge_ordered(df3, df4))
+# print(df3.merge(df4, how="outer"))
+
+# print(pd.merge_ordered(df3, df4, how="inner"))
+# print(df3.merge(df4))
+
+# print(pd.merge_ordered(df3, df4, how="left"))
+# print(df3.merge(df4, how="left"))
+
+# print(pd.merge_ordered(df3, df4, how="right"))
+# print(df3.merge(df4, how="right"))
+
+# ------------------------------------------------------------------------------
+
+# ( Joining Data by Merge_order() method )
+
+# df3.sort_values("age", inplace=True)
+# df4.sort_values("Age", inplace=True)
+# print(pd.merge_asof(df3, df4, left_on="age", right_on="Age"))
+
+# ------------------------------------------------------------------------------
+
+# ( query() method )
+# print(df3.query("age > 20 and age < 23 and gender == 'Male'"))
+# print(df3[(df3["age"] > 20) & (df3["age"] < 23) & (df3["gender"] == "Male")])
+
+# ------------------------------------------------------------------------------
+
+# ( melt() method )
+# print(df3.melt(id_vars=["student_id", "age"]))
+# print(df3.melt(id_vars=["student_id", "age"], value_vars="gender"))
+# print(df3.melt(id_vars=["student_id", "age"], value_vars="gender", var_name="Sex", value_name="M | F"))
+
+# ------------------------------------------------------------------------------
+
+# df = pd.read_csv("student_habits_performance.csv")
 
 # print(list(df.columns))
 # print(df.info())
@@ -287,8 +335,8 @@ df = pd.read_csv("student_habits_performance.csv")
 
 # (socil media hours)
 
-female = df[df["gender"] == "Female"]
-female.reset_index(inplace=True)
+# female = df[df["gender"] == "Female"]
+# female.reset_index(inplace=True)
 
 # print(female["social_media_hours"].index.max())
 # print(female["social_media_hours"].max())
@@ -296,3 +344,79 @@ female.reset_index(inplace=True)
 
 # print(female.loc[female["social_media_hours"].idxmax()])
 
+# ------------------------------------------------------------------------------
+
+data = pd.read_csv("student_habits_performance.csv")
+
+data.dropna(inplace=True)
+
+# ( Mode )
+print(data["age"].mode())
+print(statistics.mode(data["age"]))
+
+# ( Variance )
+print(data["age"].var())
+print(np.var(data["age"], ddof=1))
+print(statistics.variance(data["age"]))
+
+# ( Standard deviation )
+print(data["age"].std())
+print(np.std(data["age"], ddof=1))
+print(statistics.stdev(data["age"]))
+
+# ( Quantiles )
+print(data["age"].quantile([0.25, 0.5, 0.75]))
+print(np.quantile(data["age"], [0.25, 0.5, 0.75]))
+print(statistics.quantiles(data["age"]))
+
+print(data["age"].quantile(np.linspace(0, 1, 5)))
+print(np.quantile(data["age"], np.linspace(0, 1, 5)))
+
+# ( Inquartile range )
+print(data["age"].quantile(0.75) - data["age"].quantile(0.25))
+print(np.quantile(data["age"], 0.75) - np.quantile(data["age"], 0.25))
+print(iqr(data["age"]))
+
+# ( How to find the min and max data point & get on the outliers )
+iqr = iqr(data["age"])
+lower_point = data["age"].quantile(0.25) - 1.5 * iqr
+upper_point = data["age"].quantile(0.75) + 1.5 * iqr
+print(data[(data["age"] < lower_point) | (data["age"] > upper_point)])
+
+plt.boxplot(data=data, x="age")
+plt.show()
+
+# ------------------------------------------------------------------------------
+
+# ( Types of distributions )
+
+data = pd.read_csv("student_habits_performance.csv")
+
+data.dropna(inplace=True)
+
+np.random.seed(123)
+print(data.sample(5))
+print(data.sample(5, replace=True))
+
+# ( cdf --> Cumulative Distribution Function )
+# ( rvs --> random variates samples )
+# ( pmf --> Probability Mass Function )
+
+# ( Uniform Distribution --> Continuous )
+from scipy.stats import uniform
+print(uniform.cdf(7, 1, 12)) # p(1 <= x <= 7) = (7 - 1) / 12
+print(uniform.rvs(0 , 5, size=10)) # 10 random numbers in range 0 and 5 to uniform distribution
+
+plt.hist(uniform.rvs(0 , 5, size=10000))
+sns.kdeplot(uniform.rvs(0 , 5, size=10000))
+plt.show()
+
+# ( Binomial Distribution --> Discrete )
+from scipy.stats import binom
+print(binom.rvs(2, 0.5, size=8)) # Flip 2 coins with 50% chance of success 1 time
+print(binom.pmf(7, 10, 0.5)) # the probability of 7 successes from 10 trials with 50% chance --> P(x = 7)
+print(binom.cdf(7, 10, 0.5)) # the probability of 7 successes or fewer from 10 trials with 50% chance --> P(x <= 7)
+
+plt.hist(binom.rvs(10, 0.5, size=10000))
+sns.kdeplot(binom.rvs(10, 0.5, size=10000))
+plt.show()

@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import statistics
 from scipy.stats import iqr
-from PIL import Image
 
 # df = pd.read_csv("trial.csv", index_col=-1)
 # df = pd.read_csv("trial.csv", index_col="name")

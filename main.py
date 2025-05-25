@@ -346,77 +346,134 @@ from scipy.stats import iqr
 
 # ------------------------------------------------------------------------------
 
-data = pd.read_csv("student_habits_performance.csv")
+# data = pd.read_csv("student_habits_performance.csv")
 
-data.dropna(inplace=True)
+# data.dropna(inplace=True)
 
 # ( Mode )
-print(data["age"].mode())
-print(statistics.mode(data["age"]))
+# print(data["age"].mode())
+# print(statistics.mode(data["age"]))
 
 # ( Variance )
-print(data["age"].var())
-print(np.var(data["age"], ddof=1))
-print(statistics.variance(data["age"]))
+# print(data["age"].var())
+# print(np.var(data["age"], ddof=1))
+# print(statistics.variance(data["age"]))
 
 # ( Standard deviation )
-print(data["age"].std())
-print(np.std(data["age"], ddof=1))
-print(statistics.stdev(data["age"]))
+# print(data["age"].std())
+# print(np.std(data["age"], ddof=1))
+# print(statistics.stdev(data["age"]))
 
 # ( Quantiles )
-print(data["age"].quantile([0.25, 0.5, 0.75]))
-print(np.quantile(data["age"], [0.25, 0.5, 0.75]))
-print(statistics.quantiles(data["age"]))
+# print(data["age"].quantile([0.25, 0.5, 0.75]))
+# print(np.quantile(data["age"], [0.25, 0.5, 0.75]))
+# print(statistics.quantiles(data["age"]))
 
-print(data["age"].quantile(np.linspace(0, 1, 5)))
-print(np.quantile(data["age"], np.linspace(0, 1, 5)))
+# print(data["age"].quantile(np.linspace(0, 1, 5)))
+# print(np.quantile(data["age"], np.linspace(0, 1, 5)))
 
 # ( Inquartile range )
-print(data["age"].quantile(0.75) - data["age"].quantile(0.25))
-print(np.quantile(data["age"], 0.75) - np.quantile(data["age"], 0.25))
-print(iqr(data["age"]))
+# print(data["age"].quantile(0.75) - data["age"].quantile(0.25))
+# print(np.quantile(data["age"], 0.75) - np.quantile(data["age"], 0.25))
+# print(iqr(data["age"]))
 
 # ( How to find the min and max data point & get on the outliers )
-iqr = iqr(data["age"])
-lower_point = data["age"].quantile(0.25) - 1.5 * iqr
-upper_point = data["age"].quantile(0.75) + 1.5 * iqr
-print(data[(data["age"] < lower_point) | (data["age"] > upper_point)])
+# iqr = iqr(data["age"])
+# lower_point = data["age"].quantile(0.25) - 1.5 * iqr
+# upper_point = data["age"].quantile(0.75) + 1.5 * iqr
+# print(data[(data["age"] < lower_point) | (data["age"] > upper_point)])
 
-plt.boxplot(data=data, x="age")
-plt.show()
+# plt.boxplot(data=data, x="age")
+# plt.show()
 
 # ------------------------------------------------------------------------------
 
 # ( Types of distributions )
 
-data = pd.read_csv("student_habits_performance.csv")
+# data = pd.read_csv("student_habits_performance.csv")
 
-data.dropna(inplace=True)
+# data.dropna(inplace=True)
 
-np.random.seed(123)
-print(data.sample(5))
-print(data.sample(5, replace=True))
+# np.random.seed(123)
+# print(data.sample(5))
+# print(data.sample(5, replace=True))
 
 # ( cdf --> Cumulative Distribution Function )
 # ( rvs --> random variates samples )
 # ( pmf --> Probability Mass Function )
+# ( ppf --> Percent Point Function )
 
 # ( Uniform Distribution --> Continuous )
-from scipy.stats import uniform
-print(uniform.cdf(7, 1, 12)) # p(1 <= x <= 7) = (7 - 1) / 12
-print(uniform.rvs(0 , 5, size=10)) # 10 random numbers in range 0 and 5 to uniform distribution
+# from scipy.stats import uniform
+# print(uniform.cdf(7, 1, 12)) # p(1 <= x <= 7) = (7 - 1) / 12
+# print(uniform.rvs(0 , 5, size=10)) # 10 random numbers in range 0 and 5 to uniform distribution
 
-plt.hist(uniform.rvs(0 , 5, size=10000))
-sns.kdeplot(uniform.rvs(0 , 5, size=10000))
-plt.show()
+# plt.hist(uniform.rvs(0 , 5, size=10000))
+# sns.kdeplot(uniform.rvs(0 , 5, size=10000))
+# plt.show()
 
 # ( Binomial Distribution --> Discrete )
-from scipy.stats import binom
-print(binom.rvs(2, 0.5, size=8)) # Flip 2 coins with 50% chance of success 1 time
-print(binom.pmf(7, 10, 0.5)) # the probability of 7 successes from 10 trials with 50% chance --> P(x = 7)
-print(binom.cdf(7, 10, 0.5)) # the probability of 7 successes or fewer from 10 trials with 50% chance --> P(x <= 7)
+# from scipy.stats import binom
+# print(binom.rvs(2, 0.5, size=8)) # Flip 2 coins with 50% chance of success 1 time
+# print(binom.pmf(7, 10, 0.5)) # the probability of 7 successes from 10 trials with 50% chance --> P(x = 7)
+# print(binom.cdf(7, 10, 0.5)) # the probability of 7 successes or fewer from 10 trials with 50% chance --> P(x <= 7)
 
-plt.hist(binom.rvs(10, 0.5, size=10000))
-sns.kdeplot(binom.rvs(10, 0.5, size=10000))
-plt.show()
+# plt.hist(binom.rvs(10, 0.5, size=10000))
+# sns.kdeplot(binom.rvs(10, 0.5, size=100000))
+# plt.show()
+
+# ( Normal Distribution --> Continuous )
+# from scipy.stats import norm
+# print(norm.cdf(10, 20, 3)) # cdf(value, mean, std)
+# print(norm.ppf(0.25, 20, 3)) # ppf(percent, mean, std)
+# print(norm.rvs(20, 3, 10))
+
+# plt.hist(norm.rvs(20, 3, 100000))
+# sns.kdeplot(norm.rvs(20, 3, 100000))
+# plt.show()
+
+# ( Poisson Distribution --> Discrete )
+# from scipy.stats import poisson
+
+# print(poisson.pmf(2, 5)) # If the average number of adoptions per week is 5, what is P (adoptions in a week = 2)
+# print(poisson.cdf(2, 5)) # If the average number of adoptions per week is 5, what is P (adoptions in a week <= 2)
+# print(poisson.rvs(8, size=5)) # rvs(λ, size)
+
+# plt.hist(poisson.rvs(8, size=100000))
+# sns.kdeplot(poisson.rvs(8, size=100000))
+# plt.show()
+
+# ( Exponential Distribution --> Continuous )
+# from scipy.stats import expon
+
+# print(expon.cdf(5, scale=20)) # cdf(x, λ) --> p(something < x)
+# print(expon.rvs(5, scale=20, size=10))
+
+# plt.hist(expon.rvs(5, scale=20, size=100000))
+# sns.kdeplot(expon.rvs(5, scale=20, size=10000))
+# plt.show()
+
+# ------------------------------------------------------------------------------
+
+# ( Correlation )
+
+# data = pd.read_csv("student_habits_performance.csv")
+
+# data.dropna(inplace=True)
+
+# int_columns = data.select_dtypes("number")
+
+# print(int_columns["study_hours_per_day"].corr(int_columns["exam_score"]))
+
+# sns.heatmap(int_columns.corr(), annot=True)
+# sns.scatterplot(data=int_columns,  x="exam_score", y="study_hours_per_day")
+# sns.scatterplot(data=int_columns, x="exam_score", y="netflix_hours")
+
+# Note on lmplot() : the line is called the regression line, you can with the slope of this line to know the relationship between the two continuous variables
+# sns.lmplot(data=int_columns,  x="exam_score", y="study_hours_per_day", ci=None)
+# sns.lmplot(data=int_columns,  x="exam_score", y="netflix_hours", ci=None)
+# sns.lmplot(data=data,  x="exam_score", y="study_hours_per_day", ci=None, col="gender", hue="gender")
+# sns.lmplot(data=data,  x="exam_score", y="netflix_hours", ci=None, col="gender", hue="gender")
+# plt.show()
+
+# ------------------------------------------------------------------------------

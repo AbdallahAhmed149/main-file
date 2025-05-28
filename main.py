@@ -505,6 +505,7 @@ from PIL import Image
 
 # ( Plotting Tiem Series )
 data = pd.read_csv("stock_data.csv")
+data2 = pd.read_csv("student_habits_performance.csv")
 
 data.drop("Unnamed: 0", inplace=True, axis=1)
 data["Date"] = pd.to_datetime(data["Date"])
@@ -539,4 +540,41 @@ fig, ax = plt.subplots()
 #     xytext=(pd.Timestamp("2014-06-01"), -0.2),
 #     arrowprops={"arrowstyle": "->", "color": "gray"},
 # )
-# plt.show()
+
+date_index = data.set_index("Date")
+decade = date_index["2010-01-01" : "2019-12-31"]
+ax.plot(decade.index, decade["Open"])
+ax.set_xticklabels(decade.index, rotation = 30) # This method is not suitable with time series
+plt.xticks(rotation=45) # This is useful for anything
+plt.show()
+
+data["year"] = data["Date"].dt.year
+decade = data[(data["year"] <= 2019) & (data["year"] >= 2010)]
+ax.bar(decade["year"], decade["Open"], label="Open")
+ax.bar(decade["year"], decade["Close"], bottom=decade["Open"], label="Close")
+ax.bar(decade["year"], decade["High"], bottom = decade["Close"] + decade["Open"], label="High")
+ax.bar(decade["year"], decade["Low"], bottom = decade["High"] + decade["Close"] + decade["Open"], label="Low")
+plt.legend()
+
+ax.bar("Open", data["Open"].mean())
+ax.bar("Close", data["Close"].mean())
+ax.bar("High", data["High"].mean())
+ax.bar("Low", data["Low"].mean())
+plt.show()
+
+ax.hist(data["Open"], label="Open", bins=[9, 17, 25, 33, 41, 49, 57, 65, 73], histtype="step")
+ax.hist(data["Close"], label="Close", bins=8, histtype="step")
+plt.legend()
+plt.show()
+
+ax.bar("Open", data["Open"].mean(), yerr=data["Open"].std())
+ax.set_ylabel("Height")
+plt.show()
+
+gender_group = data2.groupby("gender")["sleep_hours"].agg(["mean", "std"])
+ax.errorbar(gender_group.index, gender_group["mean"], yerr=gender_group["std"], marker="o", color="r")
+ax.bar(x=gender_group.index, height=gender_group["mean"], yerr=gender_group["std"])
+plt.show()
+
+ax.scatter(data=data2, x="study_hours_per_day", y="exam_score", c=data2.index, cmap="coolwarm")
+plt.show()

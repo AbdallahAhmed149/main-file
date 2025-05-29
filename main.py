@@ -504,15 +504,19 @@ from PIL import Image
 # plt.show()
 
 # ( Plotting Tiem Series )
-data = pd.read_csv("stock_data.csv")
-data2 = pd.read_csv("student_habits_performance.csv")
+# data = pd.read_csv("stock_data.csv")
+# data2 = pd.read_csv("student_habits_performance.csv")
 
-data.drop("Unnamed: 0", inplace=True, axis=1)
-data["Date"] = pd.to_datetime(data["Date"])
+# data.drop("Unnamed: 0", inplace=True, axis=1)
+# data["Date"] = pd.to_datetime(data["Date"])
 # print(data["Date"].dt.year.nunique())
 
-fig, ax = plt.subplots()
+# fig, ax = plt.subplots()
 # ax.plot(data["Date"], data["Open"])
+
+# ( To customize the style )
+# plt.style.use("bmh")
+# fig.set_size_inches(10, 8)
 
 # date_index = data.set_index("Date")
 # decade = date_index["2010-01-01" : "2019-12-31"]
@@ -541,40 +545,72 @@ fig, ax = plt.subplots()
 #     arrowprops={"arrowstyle": "->", "color": "gray"},
 # )
 
-date_index = data.set_index("Date")
-decade = date_index["2010-01-01" : "2019-12-31"]
-ax.plot(decade.index, decade["Open"])
-ax.set_xticklabels(decade.index, rotation = 30) # This method is not suitable with time series
-plt.xticks(rotation=45) # This is useful for anything
-plt.show()
+# date_index = data.set_index("Date")
+# decade = date_index["2010-01-01" : "2019-12-31"]
+# ax.plot(decade.index, decade["Open"])
+# ax.set_xticklabels(decade.index, rotation = 30) # This method is not suitable with time series
+# plt.xticks(rotation=45) # This is useful for anything
+# plt.show()
 
-data["year"] = data["Date"].dt.year
-decade = data[(data["year"] <= 2019) & (data["year"] >= 2010)]
-ax.bar(decade["year"], decade["Open"], label="Open")
-ax.bar(decade["year"], decade["Close"], bottom=decade["Open"], label="Close")
-ax.bar(decade["year"], decade["High"], bottom = decade["Close"] + decade["Open"], label="High")
-ax.bar(decade["year"], decade["Low"], bottom = decade["High"] + decade["Close"] + decade["Open"], label="Low")
-plt.legend()
+# data["year"] = data["Date"].dt.year
+# decade = data[(data["year"] <= 2019) & (data["year"] >= 2010)]
+# ax.bar(decade["year"], decade["Open"], label="Open")
+# ax.bar(decade["year"], decade["Close"], bottom=decade["Open"], label="Close")
+# ax.bar(decade["year"], decade["High"], bottom = decade["Close"] + decade["Open"], label="High")
+# ax.bar(decade["year"], decade["Low"], bottom = decade["High"] + decade["Close"] + decade["Open"], label="Low")
+# plt.legend()
 
-ax.bar("Open", data["Open"].mean())
-ax.bar("Close", data["Close"].mean())
-ax.bar("High", data["High"].mean())
-ax.bar("Low", data["Low"].mean())
-plt.show()
+# ax.bar("Open", data["Open"].mean())
+# ax.bar("Close", data["Close"].mean())
+# ax.bar("High", data["High"].mean())
+# ax.bar("Low", data["Low"].mean())
+# plt.show()
 
-ax.hist(data["Open"], label="Open", bins=[9, 17, 25, 33, 41, 49, 57, 65, 73], histtype="step")
-ax.hist(data["Close"], label="Close", bins=8, histtype="step")
-plt.legend()
-plt.show()
+# ax.hist(data["Open"], label="Open", bins=[9, 17, 25, 33, 41, 49, 57, 65, 73], histtype="step")
+# ax.hist(data["Close"], label="Close", bins=8, histtype="step")
+# plt.legend()
+# plt.show()
 
-ax.bar("Open", data["Open"].mean(), yerr=data["Open"].std())
-ax.set_ylabel("Height")
-plt.show()
+# ax.bar("Open", data["Open"].mean(), yerr=data["Open"].std())
+# ax.set_ylabel("Height")
+# plt.show()
 
-gender_group = data2.groupby("gender")["sleep_hours"].agg(["mean", "std"])
-ax.errorbar(gender_group.index, gender_group["mean"], yerr=gender_group["std"], marker="o", color="r")
-ax.bar(x=gender_group.index, height=gender_group["mean"], yerr=gender_group["std"])
-plt.show()
+# gender_group = data2.groupby("gender")["sleep_hours"].agg(["mean", "std"])
+# ax.errorbar(gender_group.index, gender_group["mean"], yerr=gender_group["std"], marker="o", color="r")
+# ax.bar(x=gender_group.index, height=gender_group["mean"], yerr=gender_group["std"], color=["red", "blue", "green"])
+# plt.show()
 
-ax.scatter(data=data2, x="study_hours_per_day", y="exam_score", c=data2.index, cmap="coolwarm")
-plt.show()
+# ax.scatter(data=data2, x="study_hours_per_day", y="exam_score", c=data2.index, cmap="coolwarm")
+# plt.show()
+
+# ( To share visualization with others )
+# plt.savefig("scatter.png")
+
+# ------------------------------------------------------------------------------
+
+# ( Introduction to Data Visualization with Seaborn )
+
+tips = sns.load_dataset("tips")  # (DataFrame)
+tips.to_csv("tips.csv", index=False)
+data = pd.read_csv("tips.csv")  # (CSV file)
+
+print(data.info())
+
+# sns.scatterplot(data=data, x="total_bill", y="tip", hue="smoker")
+# sns.heatmap(data.corr(numeric_only=True), annot=True)
+# sns.lmplot(data=data, x="total_bill", y="tip", ci=None, hue="smoker")
+# sns.scatterplot(data=data, x="total_bill", y="tip", hue="smoker", palette={"Yes" : "red", "No" : "blue"})
+# sns.countplot(data=data, x="sex", hue="smoker")
+# sns.relplot(data=data, x="total_bill", y="tip", hue="smoker", col="smoker", row="sex", kind="scatter")
+# sns.relplot(data=data, x="total_bill", y="tip", hue="smoker", col="smoker", row="sex", kind="line")
+# sns.relplot(data=data, x="total_bill", y="tip", hue="smoker", col="day", kind="scatter", col_wrap=2)
+# sns.relplot(data=data, x="total_bill", y="tip", kind="scatter", size="size", hue="size", style="smoker")
+# sns.relplot(data=data, x="total_bill", y="tip", kind="line", size="size", hue="size", style="smoker")
+# sns.relplot(data=data, x="total_bill", y="tip", kind="scatter", size="size", hue="size", style="smoker", alpha=0.5)
+# sns.relplot(data=data, x="total_bill", y="tip", kind="line", style="smoker", hue="sex", col="sex", row="smoker", markers=True, dashes=False)
+# plt.show()
+
+# sns.catplot(data=data, x="sex", y="total_bill", kind="box")
+# sns.catplot(data=data, x="sex", y="total_bill", kind="point", estimator=np.median, linestyle="none", capsize=0.2)
+# sns.catplot(data=data, x="sex", y="total_bill", kind="point", estimator=np.median, linestyle="none", errorbar=None)
+# plt.show()

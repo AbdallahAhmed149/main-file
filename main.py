@@ -590,17 +590,21 @@ from PIL import Image
 
 # ( Introduction to Data Visualization with Seaborn )
 
-tips = sns.load_dataset("tips")  # (DataFrame)
-tips.to_csv("tips.csv", index=False)
-data = pd.read_csv("tips.csv")  # (CSV file)
+# tips = sns.load_dataset("tips")  # (DataFrame)
+# tips.to_csv("tips.csv", index=False)
+# data = pd.read_csv("tips.csv")  # (CSV file)
 
-print(data.info())
+# sns.set_context("notebook")
+# sns.set_context("paper")
+# sns.set_context("poster")
+# sns.set_context("talk")
 
 # sns.scatterplot(data=data, x="total_bill", y="tip", hue="smoker")
 # sns.heatmap(data.corr(numeric_only=True), annot=True)
 # sns.lmplot(data=data, x="total_bill", y="tip", ci=None, hue="smoker")
 # sns.scatterplot(data=data, x="total_bill", y="tip", hue="smoker", palette={"Yes" : "red", "No" : "blue"})
 # sns.countplot(data=data, x="sex", hue="smoker")
+
 # sns.relplot(data=data, x="total_bill", y="tip", hue="smoker", col="smoker", row="sex", kind="scatter")
 # sns.relplot(data=data, x="total_bill", y="tip", hue="smoker", col="smoker", row="sex", kind="line")
 # sns.relplot(data=data, x="total_bill", y="tip", hue="smoker", col="day", kind="scatter", col_wrap=2)
@@ -608,9 +612,145 @@ print(data.info())
 # sns.relplot(data=data, x="total_bill", y="tip", kind="line", size="size", hue="size", style="smoker")
 # sns.relplot(data=data, x="total_bill", y="tip", kind="scatter", size="size", hue="size", style="smoker", alpha=0.5)
 # sns.relplot(data=data, x="total_bill", y="tip", kind="line", style="smoker", hue="sex", col="sex", row="smoker", markers=True, dashes=False)
-# plt.show()
 
 # sns.catplot(data=data, x="sex", y="total_bill", kind="box")
+# sns.catplot(data, x="sex", y="total_bill", kind="bar", hue="sex")
 # sns.catplot(data=data, x="sex", y="total_bill", kind="point", estimator=np.median, linestyle="none", capsize=0.2)
 # sns.catplot(data=data, x="sex", y="total_bill", kind="point", estimator=np.median, linestyle="none", errorbar=None)
+# sns.catplot(data=data, x="sex", y="total_bill", kind="point")
+# sns.catplot(data=data, x="sex", y="total_bill", kind="point", estimator=np.median)
+# sns.catplot(data=data, x="sex", y="total_bill", kind="point", estimator=np.std)
+# sns.catplot(data=data, x="sex", y="total_bill", kind="point", errorbar="ci")
+# sns.catplot(data=data, x="sex", y="total_bill", kind="point", errorbar="pi")
+# sns.catplot(data=data, x="sex", y="total_bill", kind="point", errorbar="se")
+# sns.catplot(data=data, x="sex", y="total_bill", kind="point", errorbar="sd")
+
+# draw = sns.catplot(data=data, x="sex", y="total_bill", kind="point")
+# draw.figure.suptitle("A visualization to a Pointplot", x=0.35, y=1)
+
+# draw = sns.catplot(data, x="sex", y="total_bill", kind="bar", hue="sex", col="smoker")
+# draw.figure.suptitle("Any Sex is Smoker")
+# draw.set_titles("Is he\she Smoker : {col_name}")
+# draw.set(xlabel="Gender", ylabel="The Bill")
+
 # plt.show()
+
+# ------------------------------------------------------------------------------
+
+# ( Introduction to Functions in Python )
+
+# value = 10
+# def add():
+#     # to convert from local to global
+#     global value
+#     value = value ** 2
+#     return value
+# print(add())
+
+# def outer(x1, x2, x3):
+#     def inner(x):
+#         return x**2
+#     return (inner(x1), inner(x2), inner(x3))
+# print(outer(3, 5, 8))
+
+# def outer(n1, s1):
+#     def inner(n2, x2):
+#         new = n2 * n1
+#         word = s1 * x2
+#         return(new, word)
+#     return(inner(5, "word"))
+# print(outer(10, 3))
+
+# def outer(x1, x2, x3):
+#     def inner(x):
+#         new = x * (x1 + x2 + x3)
+#         return new
+#     return inner
+# nums = outer(4, 5, 2)
+# print(nums(10))
+
+# def outer():
+#     n = 1
+#     def inner():
+#         nonlocal n
+#         n = 2
+#         print(n)
+#     inner()
+#     return n
+# print(outer())
+
+# def add_all(*args):
+#     sum_all = 0
+#     for num in args:
+#         sum_all += num
+#     return sum_all
+# print(add_all(5, 10, 20))
+
+# def print_all(**kwargs):
+#     for key, value in kwargs.items():
+#         print(f"{key} : {value}")
+# print_all(Name="Abdallah", Work_as="AI & ML Engineer")
+
+# lambda_func = lambda x, y : x ** y
+# print(lambda_func(10, 3))
+
+# lst = [2, 4, 10, 5, 9]
+# map_func = map(lambda x : x ** 2, lst)
+# print(*map_func)
+
+# def error_handling(num):
+#     n = int(input("Enter the number: "))
+#     if num < 0:
+#         raise ValueError("X must be positive number")
+#     try:
+#         print(num / n)
+#     except:
+#         print("Invalid number, Try again")
+#     finally:
+#         print(f"your number was {n}")
+# error_handling(10)
+# error_handling(-4)
+
+# ------------------------------------------------------------------------------
+
+# ( Python Toolbox )
+
+# word = "DataCamp"
+# it = iter(word)
+# print(next(it))
+# print(next(it))
+# print(next(it))
+# print(next(it))
+# print(*it)
+# print(*word)
+
+# with open("test.txt", "r") as file:
+#     it = iter(file)
+#     print(next(it))
+#     print(next(it))
+#     print(*it)
+#     print(*file)
+
+# lst = ["Abdallah", "Ahmad", "Mohammed", "Tolba"]
+# print(list(enumerate(lst)))
+
+# lst1 = [1, 2, 3, 4]
+# lst2 = ["Abdallah", "Ahmad", "Mohammed", "Tolba"]
+# print(list(zip(lst1, lst2)))
+
+# even_nums = {num + 1: num for num in range(10) if num % 2 == 0}
+# print(even_nums)
+
+# def num_sequence(n):
+#     i = 0
+#     while i < n:
+#         yield i
+#         i += 1
+# result = num_sequence(5)
+# for item in result:
+#     print(item)
+
+# ------------------------------------------------------------------------------
+
+# ( Exploratory Data Analysis in Python )
+

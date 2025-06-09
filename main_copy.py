@@ -931,22 +931,22 @@ df3["marriage_year"] = df3["marriage_date"].dt.year
 # print(pd.pivot_table(data=df, index="gender", columns="parental_education_level", values="age", aggfunc="mean"))
 # print(df.groupby(["gender", "parental_education_level"])["age"].agg("mean"))
 
-# # ( to cut a specific columns into ranges ) --> this is very important
-# print(df3["income_woman"].describe())
+# ( to cut a specific columns into ranges ) --> this is very important
+print(df3["income_woman"].describe())
 
-# q25 = df3["income_woman"].quantile(0.25)
-# q50 = df3["income_woman"].median()
-# q75 = df3["income_woman"].quantile(0.75)
-# maximum = df3["income_woman"].max()
+q25 = df3["income_woman"].quantile(0.25)
+q50 = df3["income_woman"].median()
+q75 = df3["income_woman"].quantile(0.75)
+maximum = df3["income_woman"].max()
 
-# labels = ["Low", "Middle", "High", "Very High"]
-# bins = [0, q25, q50, q75, maximum]
+labels = ["Low", "Middle", "High", "Very High"]
+bins = [0, q25, q50, q75, maximum]
 
-# df3["income_woman_category"] = pd.cut(df3["income_woman"], labels=labels, bins=bins)
+df3["income_woman_category"] = pd.cut(df3["income_woman"], labels=labels, bins=bins)
 # print(df3[["income_woman", "income_woman_category"]].head())
 
-# sns.countplot(data=df3, x="income_woman_category", hue="education_woman")
-# plt.show()
+sns.countplot(data=df3, x="income_woman_category", hue="education_woman")
+plt.show()
 # ------------------------------------------------------------------------------
 
 # data = pd.read_csv("ai_job_dataset.csv", parse_dates=["posting_date", "application_deadline"])
@@ -965,4 +965,3 @@ df3["marriage_year"] = df3["marriage_date"].dt.year
 # print(data["job_title"].value_counts(normalize=True))
 # print(data["company_name"].value_counts())
 # print(data["salary_currency"].value_counts())
-
